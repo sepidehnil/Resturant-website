@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import MealsCard from "./MealsCard";
 
 export default function Meals() {
   const [loadedMeals, setLoadedMeals] = useState([]);
@@ -26,10 +26,14 @@ export default function Meals() {
   //     });
 
   return (
-    <ul>
+    <div id="meals">
       {loadedMeals.map((meal) => {
-        return <li key={meal.id}>{meal.name}</li>;
+        return (
+          <div>
+            <MealsCard key={meal.id} meal={meal} />
+          </div>
+        );
       })}
-    </ul>
+    </div>
   );
 }

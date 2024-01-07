@@ -2,8 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #15103b;
+  background-color: antiquewhite;
   padding: 0px 70px;
+  margin-bottom: 60px;
+  padding-top: 30px;
 }
 .header-title {
   display: flex;
@@ -14,14 +16,16 @@
   color: rgb(255, 204, 0);
 }
 .header-logo {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid rgb(255, 204, 0);
 }
 .cart button {
   background: transparent;
   border: none;
   color: rgb(255, 204, 0);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   cursor: pointer;
 }

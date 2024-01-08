@@ -14,6 +14,7 @@ function cartReducer(state, action) {
     );
 
     const updatedItems = [...state.items];
+
     if (findExistingItem > -1) {
       const existingItem = state.items[findExistingItem];
       const updatedItem = {
@@ -24,17 +25,48 @@ function cartReducer(state, action) {
     } else {
       updatedItems.push({ ...action.item, quantity: 1 });
     }
-    return { ...state, items: [updatedItems] };
+    return { ...state, items: updatedItems }; //it should always return a updated state
   }
+
   if (action.type === "Remove-Item") {
-    //update state to remove meal item
+    const findExistingItem = state.items.findIndex(
+      (item) => item.id === action.item.id
+    );
+    const updatedItems = [...state.items];
+    const existingItem = state.items[findExistingItem];
+    if (existingItem.quantity === 1) {
+      updatedItems.splice(findExistingItem, 1);
+    } else {
+      const updatedItem = {
+        ...existingItem,
+        quantity: existingItem.quantity - 1,
+      };
+      updatedItems[findExistingItem] = updatedItem;
+    }
+    return { ...state, items: updatedItems };
   }
+
+  return state;
 }
 
 export function CartContextProvider({ Children }) {
-  useReducer(cartReducer, { items: [] }); //for more complex state management //items as a initail value
+  const [cart, dispatch] = useReducer(cartReducer, { items: [] }); //for more complex state management //items as a initail value
   //the cartcontextProvider is the actual state mangement and the createcontext alone is not managing the states and its just about spreading data to components
-  return <CartContext.Provider>{Children}</CartContext.Provider>;
+  function addItem(item) {
+    dispatch({ type: "Add-Item", item });
+  }
+  function removeItem(id) {
+    dispatch({ type: "Remove-Item", id });
+  }
+  const cartContext = {
+    items: cart.items,
+    addItem: addItem,
+    removeItem: removeItem,
+  };
+
+  return (
+    <CartContext.Provider value={cartContext}>{Children}</CartContext.Provider>
+  );
 }
 
 export default CartContext;

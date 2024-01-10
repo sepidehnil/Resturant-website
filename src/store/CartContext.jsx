@@ -1,4 +1,4 @@
-import { Children, createContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 const CartContext = createContext({
   items: [],
@@ -49,23 +49,23 @@ function cartReducer(state, action) {
   return state;
 }
 
-export function CartContextProvider({ Children }) {
+export function CartProvider({ children }) {
   const [cart, dispatch] = useReducer(cartReducer, { items: [] }); //for more complex state management //items as a initail value
-  //the cartcontextProvider is the actual state mangement and the createcontext alone is not managing the states and its just about spreading data to components
+  //the CartProvider is the actual state mangement and the createcontext alone is not managing the states and its just about spreading data to components
   function addItem(item) {
-    dispatch({ type: "Add-Item", item });
+    dispatch({ type: "Add-Item", item: item });
   }
   function removeItem(id) {
-    dispatch({ type: "Remove-Item", id });
+    dispatch({ type: "Remove-Item", id: id });
   }
   const cartContext = {
     items: cart.items,
     addItem: addItem,
     removeItem: removeItem,
   };
-
+  console.log(cartContext);
   return (
-    <CartContext.Provider value={cartContext}>{Children}</CartContext.Provider>
+    <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
   );
 }
 

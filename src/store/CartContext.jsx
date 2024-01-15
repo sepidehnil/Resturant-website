@@ -30,8 +30,9 @@ function cartReducer(state, action) {
 
   if (action.type === "Remove-Item") {
     const findExistingItem = state.items.findIndex(
-      (item) => item.id === action.item.id
+      (item) => item.id === action.id
     );
+
     const updatedItems = [...state.items];
     const existingItem = state.items[findExistingItem];
     if (existingItem.quantity === 1) {
@@ -53,15 +54,15 @@ export function CartProvider({ children }) {
   const [cart, dispatch] = useReducer(cartReducer, { items: [] }); //for more complex state management //items as a initail value
   //the CartProvider is the actual state mangement and the createcontext alone is not managing the states and its just about spreading data to components
   function addItem(item) {
-    dispatch({ type: "Add-Item", item: item });
+    dispatch({ type: "Add-Item", item });
   }
   function removeItem(id) {
-    dispatch({ type: "Remove-Item", id: id });
+    dispatch({ type: "Remove-Item", id });
   }
   const cartContext = {
     items: cart.items,
-    addItem: addItem,
-    removeItem: removeItem,
+    addItem,
+    removeItem,
   };
   console.log(cartContext);
   return (

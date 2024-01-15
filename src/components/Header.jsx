@@ -3,6 +3,7 @@ import Button from "./UI/Button";
 import { useContext } from "react";
 import CartContext from "../store/CartContext";
 import UserProgressContext from "../store/UserProgressContext";
+import "../index.css";
 
 export default function Header() {
   const Ctx = useContext(CartContext);
@@ -16,9 +17,9 @@ export default function Header() {
     cartCtx.showCart();
   }
   return (
-    <header className="main-header">
-      <div className="header-title">
-        <img src={logo} className="header-logo" />
+    <header id="main-header">
+      <div id="title">
+        <img src={logo} />
         <h1 className="headerName">ReactFood</h1>
       </div>
       <nav className="cart">

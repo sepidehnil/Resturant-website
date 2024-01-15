@@ -3,6 +3,7 @@ import Meals from "./components/Meals";
 import { CartProvider } from "./store/CartContext";
 import { UserProgressContextProvider } from "./store/UserProgressContext";
 import Cart from "./components/Cart";
+import "./index.css";
 
 function App() {
   return (

@@ -1,15 +1,16 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import "../../assets/styles/modal.css";
+import "../../index.css";
 
 export default function Modal({ children, open, className = "" }) {
   const dialog = useRef();
 
   useEffect(() => {
+    const modal = dialog.current;
     if (open) {
-      dialog.current.showModal();
+      modal.showModal();
     }
-    return () => dialog.current.close(); //clear function
+    return () => modal.close(); //clear function
   }, [open]);
 
   return createPortal(

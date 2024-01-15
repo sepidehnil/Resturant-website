@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "../assets/styles/mealsCard.css";
+import classes from "../assets/styles/MealsCard.module.css";
 import { currencyFormatter } from "../util/formatting";
 import Button from "./UI/Button";
 import CartContext from "../store/CartContext";
@@ -10,17 +10,17 @@ export default function MealsCard({ meal }) {
     cartCtx.addItem(meal);
   }
   return (
-    <div className="meal-item">
+    <div className={classes["meal-item"]}>
       <article>
         <img src={`http://localhost:3000/${meal.image}`} alt={meal.name} />
         <div>
-          <h2 className="meal-item-name">{meal.name}</h2>
-          <p className="meal-item-price">
+          <h2 className={classes["meal-item-name"]}>{meal.name}</h2>
+          <p className={classes["meal-item-price"]}>
             {currencyFormatter.format(meal.price)}
           </p>
-          <p className="meal-item-description">{meal.description}</p>
+          <p className={classes["meal-item-description"]}>{meal.description}</p>
         </div>
-        <p className="meal-item-actions">
+        <p className={classes["meal-item-actions"]}>
           <Button onClick={handleAddTOCart}>Add to cart</Button>
         </p>
       </article>

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import MealsCard from "./MealsCard";
 import axios from "axios";
-import classes from "../assets/styles/MealsCard.module.css";
-
+import "../index.css";
 export default function Meals() {
   const [loadedMeals, setLoadedMeals] = useState([]);
 
@@ -15,14 +14,14 @@ export default function Meals() {
     //   console.log(meals);
     //   setLoadedMeals(meals);
     // }
-    
+
     axios
       .get("http://localhost:3000/meals")
       .then((res) => setLoadedMeals(res.data));
   }, []);
 
   return (
-    <div id={classes["meals"]}>
+    <div id="meals">
       {loadedMeals.map((meal) => {
         return (
           <div>

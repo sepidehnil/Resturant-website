@@ -13,7 +13,7 @@ export default function Header() {
     return totalItemsOfCart + item.quantity;
   }, 0);
 
-  function handleOpen() {
+  function showCart() {
     cartCtx.showCart();
   }
   return (
@@ -23,7 +23,7 @@ export default function Header() {
         <h1 className="headerName">ReactFood</h1>
       </div>
       <nav className="cart">
-        <Button textOnly onClick={handleOpen}>
+        <Button textOnly onClick={showCart}>
           Cart ({totalCartItems})
         </Button>
       </nav>

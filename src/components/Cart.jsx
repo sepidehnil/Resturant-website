@@ -24,7 +24,11 @@ export default function Cart() {
   }
 
   return (
-    <Modal className="cart" open={cartCtx.progress === "cart"}>
+    <Modal
+      className="cart"
+      open={cartCtx.progress === "cart"}
+      onClose={cartCtx.progress === "cart" ? handleClose : null}
+    >
       <h2>Your Cart</h2>
       <ul>
         {cartItems.map((item) => (

@@ -25,29 +25,20 @@ export default function Checkout() {
     // console.log(fd.get("full-name")); //get the name that we write in input cause the name={id} is the in input
     const customerData = Object.fromEntries(fd.entries()); //{full-Name : sepideh}
     console.log(customerData);
+
     fetch("http://localhost:3000/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        //JSON. stringify() method converts JavaScript objects into strings.
         order: {
           items: ctx.items,
           customer: customerData,
         },
       }),
     });
-    //     axios.post("http://localhost:3000/orders", {
-    //       headers: {
-    //         "content-type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         order: {
-    //           items: ctx.items,
-    //           customer: customerData,
-    //         },
-    //       }),
-    //     });
   }
 
   return (
@@ -56,7 +47,7 @@ export default function Checkout() {
         <h2>Checkout</h2>
         <p>Total Amount : {currencyFormatter.format(TotalAmount)}</p>
         <Input label="Full Name" type="text" id="name" />
-        <Input label="E-mail Address" type="email" id="email-address" />
+        <Input label="E-mail Address" type="email" id="email" />
         <Input label="Street" type="text" id="street" />
         <div className="control-row">
           <Input label="Postal Code" type="text" id="postal-code" />

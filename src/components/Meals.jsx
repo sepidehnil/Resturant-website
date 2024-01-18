@@ -3,6 +3,7 @@ import MealsCard from "./MealsCard";
 import axios from "axios";
 import "../index.css";
 import useHttp from "../hooks/useHttp";
+import Error from "./Error";
 
 const requestConfig = {};
 
@@ -27,10 +28,13 @@ export default function Meals() {
     data: loadedMeals,
     isLoading,
     error,
-  } = useHttp("http://localhost:3000/meals", requestConfig, []);
+  } = useHttp("http://localhost:3000/mealjs", requestConfig, []);
 
   if (isLoading) {
     return <p>loading...</p>;
+  }
+  if (error) {
+    return <Error title="Failed to fetch" message={error} />;
   }
 
   return (
